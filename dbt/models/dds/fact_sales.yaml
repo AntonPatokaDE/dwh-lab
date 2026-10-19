@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: "Факт продаж. Одна строка = одна товарная позиция заказа"
+
+    columns:
+      - name: salesorderdetailid
+        description: "Уникальный идентификатор позиции заказа"
+        tests:
+          - not_null
+          - unique
+
+      - name: line_amount
+        description: "Стоимость позиции заказа с учетом количества и скидки"
+        tests:
+          - not_null
+
+      - name: _dds_load_dttm
+        description: "Время формирования записи в DDS"
+        tests:
+          - not_null

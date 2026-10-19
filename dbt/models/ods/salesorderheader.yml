@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: salesorderheader
+    description: "ODS-модель заказов AdventureWorks"
+
+    columns:
+      - name: salesorderid
+        description: "Уникальный идентификатор заказа"
+        tests:
+          - not_null
+          - unique
+
+      - name: orderdate
+        description: "Дата оформления заказа"
+        tests:
+          - not_null
+
+      - name: status
+        description: "Статус заказа"
+        tests:
+          - not_null
+
+      - name: onlineorderflag
+        description: "Признак онлайн-заказа"
+        tests:
+          - not_null
+
+      - name: customerid
+        description: "Идентификатор клиента"
+        tests:
+          - not_null
+
+      - name: subtotal
+        description: "Стоимость товаров заказа"
+        tests:
+          - not_null
+
+      - name: modifieddate
+        description: "Дата последнего изменения записи в source"
+        tests:
+          - not_null
+
+      - name: _ods_load_dttm
+        description: "Время загрузки записи в ODS"
+        tests:
+          - not_null

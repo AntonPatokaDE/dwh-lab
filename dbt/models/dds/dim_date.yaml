@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: "Календарь"
+
+    columns:
+      - name: date
+        description: "Дата"
+        tests:
+          - not_null
+          - unique
+
+      - name: _dds_load_dttm
+        description: "Время формирования записи в DDS"
+        tests:
+          - not_null

@@ -1,0 +1,57 @@
+# =========================
+# Secrets / environment
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# =========================
+# Airflow
+# =========================
+airflow/logs/
+airflow/**/__pycache__/
+
+# =========================
+# dbt generated files
+# =========================
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+dbt/.user.yml
+
+# =========================
+# Spark / temporary files
+# =========================
+spark-warehouse/
+.metals/
+.checkpoints/
+*.crc
+
+# =========================
+# IDE
+# =========================
+.idea/
+.vscode/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs / temp
+# =========================
+*.log
+*.tmp
+*.swp

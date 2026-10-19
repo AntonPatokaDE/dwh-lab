@@ -1,0 +1,24 @@
+name: "dwh_lab"
+version: "1.0.0"
+
+config-version: 2
+
+profile: "dwh_lab"
+
+model-paths:
+  - "models"
+
+models:
+  dwh_lab:
+
+    ods:
+      +materialized: table
+      +schema: ods_dbt
+
+    dds:
+      +materialized: table
+      +schema: dds_dbt
+
+    dm:
+      +materialized: table
+      +schema: dm_dbt

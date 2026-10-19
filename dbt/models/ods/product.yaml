@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: product
+    description: "ODS-модель товара"
+
+    columns:
+      - name: productid
+        description: "Уникальный идентификатор товара"
+        tests:
+          - not_null
+          - unique
+
+      - name: productnumber
+        description: "Уникальный номер товара в source"
+        tests:
+          - not_null
+
+      - name: standardcost
+        description: "Стандартная себестоимость товара"
+        tests:
+          - not_null
+
+      - name: listprice
+        description: "Рекомендованная цена товара"
+        tests:
+          - not_null
+
+      - name: modifieddate
+        description: "Дата последнего изменения записи в source"
+        tests:
+          - not_null
+
+      - name: _load_dttm
+        description: "Время загрузки записи в STAGE"
+        tests:
+          - not_null
+
+      - name: _batch_id
+        description: "Идентификатор batch-загрузки"
+        tests:
+          - not_null
+
+      - name: _source_system
+        description: "Источник данных"
+        tests:
+          - not_null
+
+      - name: _ods_load_dttm
+        description: "Время формирования записи в ODS"
+        tests:
+          - not_null

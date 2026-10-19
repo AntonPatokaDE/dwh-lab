@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: salesorderdetail
+    description: "ODS-модель деталей заказов AdventureWorks"
+
+    columns:
+      - name: salesorderid
+        description: "Уникальный идентификатор заказа"
+        tests:
+          - not_null
+          
+
+      - name: salesorderdetailid
+        description: "Идентификатор диталей заказа"
+        tests:
+          - not_null
+
+      - name: orderqty
+        description: "Количество единиц товара с конкретным productid"
+        tests:
+          - not_null
+
+      - name: unitprice
+        description: "Цена одной единицы товара"
+        tests:
+          - not_null
+
+      - name: productid
+        description: "Идентификатор товара"
+        tests:
+          - not_null
+          
+      - name: modifieddate
+        description: "Дата последнего изменения записи в source"
+        tests:
+          - not_null
+
+      - name: _ods_load_dttm
+        description: "Время загрузки записи в ODS"
+        tests:
+          - not_null

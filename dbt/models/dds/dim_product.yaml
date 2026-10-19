@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: dim_product
+    description: "Справочник товара"
+
+    columns:
+      - name: productid
+        description: "Уникальный идентификатор товара"
+        tests:
+          - not_null
+          - unique
+
+      - name: name
+        description: "Название товара"
+        tests:
+          - not_null
+
+      - name: productsubcategoryid
+        description: "Идентификатор подкатегории товара"
+        tests:
+          - relationships:
+              to: ref('productsubcategory')
+              field: productsubcategoryid
+
+      - name: productcategoryid
+        description: "Идентификатор категории товара"
+        tests:
+          - relationships:
+              to: ref('productcategory')
+              field: productcategoryid
+
+      - name: _dds_load_dttm
+        description: "Время формирования записи в DDS"
+        tests:
+          - not_null

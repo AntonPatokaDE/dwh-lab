@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: productsubcategory
+    description: "ODS-модель подкатегории товара"
+
+    columns:
+      - name: productsubcategoryid
+        description: "Уникальный идентификатор категории товара"
+        tests:
+            - not_null
+            - unique
+            
+      - name: productcategoryid
+        description: "Уникальный идентификатор категории товара"
+        tests:
+          - not_null
+
+      - name: name
+        description: "Названии категории товара"
+        tests:
+          - not_null
+      - name: modifieddate
+        description: "Дата последнего изменения записи в source"
+        tests:
+          - not_null
+
+      - name: _load_dttm
+        description: "Время загрузки записи в STAGE"
+        tests:
+          - not_null
+
+      - name: _batch_id
+        description: "Идентификатор batch-загрузки"
+        tests:
+          - not_null
+
+      - name: _source_system
+        description: "Источник данных"
+        tests:
+          - not_null
+
+      - name: _ods_load_dttm
+        description: "Время формирования записи в ODS"
+        tests:
+          - not_null

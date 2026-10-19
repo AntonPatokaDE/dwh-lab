@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: stage
+    database: dwh
+    schema: stage
+
+    tables:
+      - name: salesorderheader
+      - name: salesorderdetail
+      - name: product
+      - name: productsubcategory
+      - name: productcategory

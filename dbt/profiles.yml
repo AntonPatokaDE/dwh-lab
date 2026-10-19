@@ -1,0 +1,16 @@
+dwh_lab:
+  target: dev
+
+  outputs:
+    dev:
+      type: greenplum
+
+      host: "{{ env_var('GP_HOST') }}"
+      port: "{{ env_var('GP_PORT') | int }}"
+      dbname: "{{ env_var('GP_DB') }}"
+
+      user: "{{ env_var('GP_USER') }}"
+      password: "{{ env_var('GP_PASSWORD') }}"
+
+      schema: ods_dbt
+      threads: 4

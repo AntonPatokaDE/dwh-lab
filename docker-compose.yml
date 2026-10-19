@@ -1,0 +1,42 @@
+services:
+  spark:
+    image: apache/spark:4.2.0-java21-python3
+
+    env_file:
+      - .env
+
+    volumes:
+      - ./jobs:/opt/spark/work-dir/jobs
+      - ./jars:/opt/spark/work-dir/jars:ro
+
+    working_dir: /opt/spark/work-dir
+
+    networks:
+      - dwh-net
+
+    ports:
+      - "4040:4040"
+
+    
+
+  dbt:
+    image: dwh-dbt:1.0
+
+    env_file:
+      - .env
+      
+    build:
+      context: ./dbt
+
+    volumes:
+      - ./dbt:/usr/app/dbt
+
+    working_dir: /usr/app/dbt
+
+    networks:
+      - dwh-net
+
+
+networks:
+  dwh-net:
+    external: true
