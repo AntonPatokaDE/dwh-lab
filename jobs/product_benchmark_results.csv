@@ -1,2 +1,0 @@
-batch_id,read_partitions,write_partitions,product_rows,subcategory_rows,category_rows,product_read_seconds,subcategory_read_seconds,category_read_seconds,truncate_seconds,product_write_seconds,subcategory_write_seconds,category_write_seconds,validation_seconds,total_pipeline_seconds,product_count_ok,subcategory_count_ok,category_count_ok
-9d13c177-9d8c-47d9-a2e9-488e43a67976,1,1,504,37,4,1.006,0.279,0.301,0.145,2.281,0.377,0.372,0.497,8.985,True,True,True

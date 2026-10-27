@@ -1,7 +1,10 @@
 services:
   spark:
-    image: apache/spark:4.2.0-java21-python3
+    image: dwh-spark-jobs:1.0
 
+    build:
+      context: ./spark
+      
     env_file:
       - .env
 
@@ -24,7 +27,7 @@ services:
 
     env_file:
       - .env
-      
+
     build:
       context: ./dbt
 
