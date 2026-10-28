@@ -12,4 +12,8 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+# DockerOperator starts this image without a host bind mount, so the dbt
+# project must be self-contained and portable between developer machines.
+COPY . .
+
 CMD ["dbt", "--version"]

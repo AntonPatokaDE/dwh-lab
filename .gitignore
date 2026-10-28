@@ -36,6 +36,14 @@ spark-warehouse/
 .metals/
 .checkpoints/
 *.crc
+jars/
+jobs/
+
+# Local database and container data
+/data/
+/volumes/
+/pgdata/
+/gpdata/
 
 # =========================
 # IDE

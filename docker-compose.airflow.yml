@@ -6,8 +6,12 @@ x-airflow-common: &airflow-common
   environment: &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: >-
-      postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
+      postgresql+psycopg2://${AIRFLOW_DB_USER:-airflow}:${AIRFLOW_DB_PASSWORD:-airflow}@airflow-postgres:5432/${AIRFLOW_DB_NAME:-airflow}
     AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW_CONN_SOURCE_POSTGRES: >-
+      postgresql://${SRC_USER:-postgres}:${SRC_PASSWORD:-postgres}@${SOURCE_HOST:-postgres-source}:${SOURCE_PORT:-5432}/${SOURCE_DB:-adventureworks}
+    AIRFLOW_CONN_GP_DWH: >-
+      postgresql://${GP_USER:-gpadmin}:${GP_PASSWORD:-gparray}@${GP_HOST:-gp-master}:${GP_PORT:-5432}/${GP_DB:-dwh}
   volumes:
     - ./airflow/dags:/opt/airflow/dags
     - ./airflow/logs:/opt/airflow/logs
@@ -20,15 +24,15 @@ services:
     image: postgres:16
     container_name: airflow-postgres
     environment:
-      POSTGRES_USER: airflow
-      POSTGRES_PASSWORD: airflow
-      POSTGRES_DB: airflow
+      POSTGRES_USER: ${AIRFLOW_DB_USER:-airflow}
+      POSTGRES_PASSWORD: ${AIRFLOW_DB_PASSWORD:-airflow}
+      POSTGRES_DB: ${AIRFLOW_DB_NAME:-airflow}
     volumes:
       - airflow-postgres-data:/var/lib/postgresql/data
     networks:
       - dwh-net
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U airflow -d airflow"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -43,8 +47,8 @@ services:
       <<: *airflow-common-env
       _AIRFLOW_DB_MIGRATE: "true"
       _AIRFLOW_WWW_USER_CREATE: "true"
-      _AIRFLOW_WWW_USER_USERNAME: airflow
-      _AIRFLOW_WWW_USER_PASSWORD: airflow
+      _AIRFLOW_WWW_USER_USERNAME: ${AIRFLOW_ADMIN_USER:-airflow}
+      _AIRFLOW_WWW_USER_PASSWORD: ${AIRFLOW_ADMIN_PASSWORD:-airflow}
       _AIRFLOW_WWW_USER_FIRSTNAME: Airflow
       _AIRFLOW_WWW_USER_LASTNAME: Admin
       _AIRFLOW_WWW_USER_EMAIL: airflow@example.com
@@ -84,3 +88,4 @@ volumes:
 networks:
   dwh-net:
     external: true
+    name: ${DWH_NETWORK_NAME:-dwh-net}

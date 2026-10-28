@@ -1,7 +1,4 @@
 import os
-from docker.types import Mount
-
-
 DBT_COMMON = {
     "image": "dwh-dbt:1.0",
 
@@ -19,14 +16,6 @@ DBT_COMMON = {
     "network_mode": "dwh-net",
 
     "working_dir": "/usr/app/dbt",
-
-    "mounts": [
-        Mount(
-            source="D:/Develop/DEPRACK/dwh-lab/dbt",
-            target="/usr/app/dbt",
-            type="bind",
-        )
-    ],
 
     "mount_tmp_dir": False,
     "auto_remove": "success",

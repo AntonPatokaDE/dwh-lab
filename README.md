@@ -8,6 +8,11 @@
 > Практический Data Engineering-проект, в котором реализован полный путь данных от транзакционного PostgreSQL-источника до аналитического DWH в Greenplum.  
 > Используются Apache Spark для batch-загрузки, dbt для построения слоёв ODS/DDS/DM, Apache Airflow для оркестрации и Docker для изоляции инфраструктуры.
 
+Связанные инфраструктурные репозитории:
+
+- [postgres-source](https://github.com/AntonPatokaDE/postgres-source) — PostgreSQL 16 и воспроизводимая загрузка AdventureWorks;
+- [docker-greenplum](https://github.com/AntonPatokaDE/docker-greenplum) — Greenplum 7, master и три primary segments.
+
 ---
 
 ## 🎯 Ключевые возможности
@@ -529,6 +534,9 @@ http://localhost:8080
 source_postgres
 gp_dwh
 ```
+
+Compose формирует оба подключения автоматически из переменных локального
+`.env`; создавать их вручную в Airflow UI не требуется.
 
 ### Source PostgreSQL
 

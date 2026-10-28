@@ -43,3 +43,4 @@ services:
 networks:
   dwh-net:
     external: true
+    name: ${DWH_NETWORK_NAME:-dwh-net}
